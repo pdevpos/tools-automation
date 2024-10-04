@@ -1,0 +1,28 @@
+format_version: 10
+pipelines:
+  monitor-prometheus:
+    group: monitor
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-2ae7d73:
+        git: https://github.com/pdevpos/tools-automation.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    secure_variables:
+    stages:
+      - DEV:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+            terraform-destroy:
+              timeout: 0
+              tasks:
+
+                - exec: { command: terraform, arguments: ["destroy","-auto-approve"], run_if: passed }
