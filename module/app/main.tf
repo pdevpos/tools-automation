@@ -13,3 +13,11 @@ resource "aws_instance" "instance" {
     Name = "${var.component}-${var.env}"
   }
 }
+
+resource "aws_route53_record" "hostzone" {
+  name    = "${var.component}-${var.env}"
+  type    = var.route_record_type
+  zone_id = var.zone_id
+  records = [aws_instance.instance.private_ip]
+  ttl = 300
+}
