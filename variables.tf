@@ -1,5 +1,4 @@
 variable "tools" {
-  default = {
     prometheus = {
       instance_type = "t3.small"
       zone_id       = "Z09583601MY3QCL7AJKBT"
@@ -7,4 +6,3 @@ variable "tools" {
       env           = "dev"
     }
   }
-}
