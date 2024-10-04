@@ -1,0 +1,16 @@
+- name: Extract foo.tgz into /var/lib/foo
+  ansible.builtin.unarchive:
+    src: https://github.com/prometheus/prometheus/releases/download/v{{ version }}-rc.0/prometheus-{{ version }}-rc.0.linux-amd64.tar.gz
+    dest: /opt
+
+- name: copy prometheus service
+  ansible.builtin.template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+
+- name: start prometheus service
+  ansible.builtin.systemd_service:
+    name: prometheus
+    state: started
+    enabled: true
+    daemon_reload: true

@@ -1,0 +1,5 @@
+- name: prometheus tool
+  hosts: localhost
+  become: yes
+  roles:
+    - {{ tool_name }}
