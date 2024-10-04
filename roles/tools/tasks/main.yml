@@ -1,4 +1,4 @@
-- name: Extract foo.tgz into /var/lib/foo
+- name: Download and extract prometheus
   ansible.builtin.unarchive:
     src: https://github.com/prometheus/prometheus/releases/download/v{{ version }}-rc.0/prometheus-{{ version }}-rc.0.linux-amd64.tar.gz
     dest: /opt
