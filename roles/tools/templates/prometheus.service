@@ -3,7 +3,8 @@ Description = prometheus server Service
 
 [Service]
 User=bin
-ExecStart= /opt/tools-automation/prometheus-{{ version }}.linux-amd64
+WorkingDirectory=/opt/tools-automation/prometheus-{{ version }}.linux-amd64
+ExecStart= /opt/tools-automation/prometheus-{{ version }}.linux-amd64/prometheus
 SyslogIdentifier=prometheus
 
 [Install]
